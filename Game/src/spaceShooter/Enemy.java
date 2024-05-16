@@ -20,6 +20,9 @@ public class Enemy {
 	int newTargetDiff;
 	int moveAmount;
 	
+	int ySpeed = 3;
+	int xSpeed = 5;
+	
 	boolean moveAllowed = false;
 	
 	int frame;
@@ -28,6 +31,19 @@ public class Enemy {
 	
 	Enemy() {
 		
+	}
+	
+	public void speedUp(int score) {
+		if(score >= 300) {
+			ySpeed = 1;
+			xSpeed = 2;
+		}else if(score >= 200) {
+			ySpeed = 1;
+			xSpeed = 3;
+		}else if (score >= 50){
+			ySpeed = 2;
+			xSpeed = 4;
+		}
 	}
 	
 	public Enemy(Color setColor, int width, int height, int x, int y) {
@@ -84,19 +100,21 @@ public class Enemy {
 //				System.out.println("s");
 				reachedTarget = false;
 			} else if((reachedTarget == false)) {
-				if(newTargetDiff != 0) {
-					forward = newTargetDiff/Math.abs(newTargetDiff);
-					
-					if (forward == 0) {
-						forward = 1;
+				if(frame%ySpeed == 0) {
+					if(newTargetDiff != 0) {
+						forward = newTargetDiff/Math.abs(newTargetDiff);
+
+						if (forward == 0) {
+							forward = 1;
+						}
+						moveAmount = forward;
+						currentY += moveAmount;
+						//				System.out.println(newTarget + " " + currentY + " " + newTargetDiff);
+						//				System.out.println(moveAmount);
 					}
-					moveAmount = forward;
-					currentY += moveAmount;
-	//				System.out.println(newTarget + " " + currentY + " " + newTargetDiff);
-	//				System.out.println(moveAmount);
-				}
-				if(currentY == newTarget) {
-					reachedTarget = true;
+					if(currentY == newTarget) {
+						reachedTarget = true;
+					}
 				}
 			}
 			enemyPosition.y = currentY;
@@ -106,7 +124,7 @@ public class Enemy {
 	public void shipXMovement() {
 		if(moveAllowed) {
 			frame++;
-			if(frame%5 == 0) {
+			if(frame%xSpeed == 0) {
 				enemyPosition.x -= 1;
 				if (enemyPosition.x <= -50) {
 					enemyPosition.x = 1950;

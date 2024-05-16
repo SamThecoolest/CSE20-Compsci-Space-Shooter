@@ -1,19 +1,21 @@
 package spaceShooter;
 
+import java.awt.Color;
 import java.awt.Point;
 
 public class Bullet {
 	Point bulletPos = new Point(0, 0);
+	Color bulletColor;
 	double bulletSpeedRandom;
 	
 	boolean createNew = false;
+
+	boolean playerFired;
 	
-	boolean bulletMove = true;
-	
-	public Bullet(int x, int y, boolean setFalse) {
+	public Bullet(int x, int y, boolean playerFired) {
 		bulletPos.x = x;
 		bulletPos.y = y;
-		bulletMove = setFalse;
+		this.playerFired = playerFired;
 	}
 	
 	public Bullet(int x, int y) {
@@ -35,9 +37,15 @@ public class Bullet {
 	}
 	
 	void bulletMoveX() {
-		if(bulletMove) 
-			bulletPos.x += 1;
+		if(playerFired) {
+			bulletColor = Color.green;
+			bulletPos.x += 3;
+		}else if (!playerFired) {
+			bulletColor = Color.red;
+			bulletPos.x -= 2;
+		}
 	}
+		
 	
 	int Bx(){
 		return (int)bulletPos.getX();

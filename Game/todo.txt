@@ -1,0 +1,8 @@
+TODO
+
+FIX SHOOTING
+
+[] make ships shoot back
+[] add lose condition
+[] add simple power ups (heal, shoot faster)
+[] add highscore keeper

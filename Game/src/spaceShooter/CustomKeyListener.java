@@ -6,43 +6,21 @@ import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
 public class CustomKeyListener implements KeyListener{
-	
-	int storeFrame;
-	int currentFrame;
-	int frameDif;
-	
-	int frameMax = 1;
-	
-	ArrayList<Bullet> bullet = new ArrayList<Bullet>();
-	
-	public void intBullet(ArrayList<Bullet> bullet) {
-		this.bullet = bullet;
-	}
-	
-	public ArrayList<Bullet> updateArray(){
-		return bullet;
-	}
+	int keyPressed;
 	
 	public void keyTyped(KeyEvent e) {
     }
 	
     public void keyPressed(KeyEvent e) {
-    	if((e.getKeyCode() == 32) && (checkIfCanShoot() >= frameMax)) {
-    		bullet.add(new Bullet(90, MouseInfo.getPointerInfo().getLocation().y));
-    	}
+    	keyPressed = e.getKeyCode();
     }
     
     public void keyReleased(KeyEvent e) {
     }
-
-    public void updateFrame(int frame) {
-//    	System.out.println("frame: " + frame + " 'currentframe:' " + currentFrame + " stored frame: " + storeFrame + " frame dif: " + (currentFrame-storeFrame));
-    	currentFrame = frame;
+    
+    public int keyOut() {
+    	System.out.println(keyPressed);
+    	return keyPressed;
     }
-    private int checkIfCanShoot() {
-		frameDif = currentFrame - storeFrame;
-		if(frameDif >= frameMax)
-		storeFrame = currentFrame;
-		return frameDif;
-	}
+
 }

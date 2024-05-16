@@ -34,9 +34,9 @@ public class Collisions {
 				
 				double distance = Math.sqrt((Math.pow((tx-x), 2)) + (Math.pow((ty-y),2)));
 //				System.out.println("bullet: " + p + " ship: " + o + " distance: " + distance);
-				if (distance <= 40) {
+				if (distance <= 30) {
 //					System.out.println("hit ship: " + o);
-//					bullet.remove(p);
+					bullet.remove(p);
 					
 					Point newEnemyPos = new Point(1960, rand.nextInt(1080)+1);
 					ships[o].setEnemyPosition(newEnemyPos);

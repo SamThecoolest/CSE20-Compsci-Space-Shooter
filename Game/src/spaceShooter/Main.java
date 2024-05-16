@@ -42,7 +42,7 @@ public class Main{
 		panel.intPlayer(player);
 		
 		
-		ships = new Enemy[12150];
+		ships = new Enemy[8];
     	for(int i = 0; i < ships.length; i++) {
     		ships[i] = new Enemy(); 
     		panel.intShips(ships);
@@ -61,12 +61,13 @@ public class Main{
 			for(int i = 0; i < ships.length; i++) {
 				ships[i].ShipYMovement(i);
 				ships[i].shipXMovement();
+				ships[i].speedUp(col.scoreOut());
 			}
 			for(int i = 0; i < bullet.size(); i++) {
 				bullet.get(i).bulletMoveX();
 			}
 			
-			keyIn.updateFrame(frameCount);
+//			keyIn.updateFrame(frameCount);
 			panel.updateScore(col.scoreOut());
 			panel.repaint();
 			try {
@@ -82,7 +83,7 @@ public class Main{
 	
 	static void updateBullets(ArrayList<Bullet> bullet, DrawPanel panel, CustomKeyListener keyIn, Collisions col) {
 		panel.intBullet(bullet);
-		keyIn.intBullet(bullet);
+//		keyIn.intBullet(bullet);
 		col.intBullets(bullet);
 		
 	}
